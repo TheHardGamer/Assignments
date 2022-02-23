@@ -1,9 +1,8 @@
 #include <iostream>
 
-/* Here i am trying to overload an operator for 1 class with a friend function for another class,
-it doesn't seem to be clicking */
+/* Operator overloading between 2 classes using a friend function*/
 using namespace std;
-
+class Area;
 class Complex {
 	private:
 		int real, img;
@@ -22,88 +21,83 @@ class Complex {
 			cout << "The value of real and img is " << real << " and " << img << endl; 
 		}
 		
-		Complex operator - (Complex ob) {
-			Complex temp;
-			temp.real = real - ob.real;
-			temp.img = img - ob.img;
-			return temp;
-		}
-		
-		Complex operator / (Complex ob) {
-			Complex temp;
-			temp.real = real / ob.real;
-			temp.img = img / ob.img;
-			return temp;
-		}
-		
-		friend Complex add(Complex, Complex);
-		friend Complex operator * (Complex ob, Complex ob2);
-		friend Complex operator ++ (Complex ob);
-		friend Area operator + (Complex ob);
-		
+		friend Complex operator + (Complex c1, Area a1);
+		friend Complex operator + (Complex c1, Complex c2);
+		friend Area operator + (Area a1, Complex c1);	
 };
 
 class Area {
 	private:
 		int l,w,h;
 	public:
-		friend Area operator + (Complex ob);
+		Area() {
+			l = 0;
+			w = 0;
+			h = 0;
+		}
+			
+		Area(int x, int y, int z) {
+			l = x;
+			w = y;
+			h = z;
+		}
+		
+		void display() {
+			cout << "The value of l,w,h is " << l << " " << w << " " << h << endl; 
+		}
+		
+		friend Complex operator + (Complex c1, Area a1);
+		friend Area operator + (Area a1, Area a2);
+		friend Area operator + (Area a1, Complex c1);
 };
 
-Area operator + (Complex ob) {
+Complex operator + (Complex c1, Area a1) {
 	Complex temp;
-	temp.real = real + ob.real;
-	temp.img = img + ob.img;
+	temp.real = c1.real + a1.l;
+	temp.img = c1.img + a1.w;
 	return temp;
 }
 
-Complex add(Complex c4, Complex c5) {
-	Complex c6;
-	c6 = c4.operator+(c5);
-	return c6;
-}
-
-Complex operator * (Complex ob, Complex ob2) {
+Complex operator + (Complex c1, Complex c2) {
 	Complex temp;
-	temp.real = ob2.real * ob.real;
-	temp.img = ob2.img * ob.img;
+	temp.real = c1.real + c2.real;
+	temp.img = c1.img + c2.img;
 	return temp;
 }
 
-Complex operator ++ (Complex ob) {
-	Complex temp;
-	temp.real = ++ob.real;
-	temp.img = ++ob.img;
+Area operator + (Area a1, Area a2) {
+	Area temp;
+	temp.l = a1.l + a2.l;
+	temp.w = a1.w + a2.w;
+	temp.h = a1.h + a2.h;
+	return temp;
+}
+
+Area operator + (Area a1, Complex c1) {
+	Area temp;
+	temp.l = a1.l + c1.real;
+	temp.w = a1.w + c1.img;
+	temp.h = a1.h;
 	return temp;
 }
 
 int main() {
-	Complex c1(10,20), c2(5,10);
+	Complex c1(10,20);
+	Area a1(5,10,15);
 	Complex c3;
-	c1.display();
-	c2.display();
+	cout << "Adding complex + complex: " << endl;
+	c3 = c1 + c1;
 	c3.display();
-	c3 = c1.operator+(c2); //or c3=c1+c2;
-	cout << "Addition -> " << endl;
+	cout << "Adding complex + area: " << endl;
+	c3 = c1+a1;
 	c3.display();
-	cout << "Subtraction -> " << endl;
-	c3 = c2-c1;
-	c3.display();
-	cout << "Multiplication friend function -> " << endl;
-	c3 = c2*c1;
-	c3.display();
-	Complex c4(20,40);
-	Complex c5(10,10);
-	Complex c6;
-	cout << "Addition using friend add function -> " << endl;
-	c6 = add(c4,c5);
-	c6.display();
-	cout << "Division -> " << endl;
-	c3 = c1/c2;
-	c3.display();
-	cout << "Increment operator friend function -> " << endl;
-	c3 = ++c1;
-	c3.display();
+	cout << "Adding area + area: " << endl;
+	Area a2;
+	a2 = a1 + a1;
+	a2.display();
+	cout << "Adding area + complex: " << endl;
+	a2 = a1 + c1;
+	a2.display();
 	return 0;
 }
 
