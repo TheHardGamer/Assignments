@@ -12,9 +12,8 @@ or opend file.
 int main() {
 	int f1;
 	struct stat st;
-	f1 = open("input.txt", O_RDONLY, 0755);
-	stat(1,&st);
-	printf("%lu\n",st.st_size);
-	printf("%lu",st.st_ino);
+	stat("input.txt",&st);
+	printf("File Size: %lu\n",st.st_size);
+	printf("Inode size: %lu\n",st.st_ino);
 	return 0;
 }

@@ -11,10 +11,11 @@ int main() {
 	int f1;
 	f1 = open("input.txt", O_RDONLY, 0755);
 	char input[300];
-	read(f1,input,300);
+	int l;
+	l = read(f1,input,300);
 	close(f1);
 	f1 = open("output.txt", O_CREAT | O_RDWR, 0755);
-	write(f1,input,300);
+	write(f1,input,l);
 	close(f1);
 	return 0;
 }
