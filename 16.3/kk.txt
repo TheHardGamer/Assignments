@@ -1,0 +1,4 @@
+kk 1sfsdfscv
+kk 2qrewrwetret
+
+seekp -2 from currcurrpos+4
