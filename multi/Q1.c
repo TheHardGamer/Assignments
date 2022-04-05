@@ -5,22 +5,17 @@
 
 inline void* print(void *arg);
 
-int main()
-{
-	//thread id
+int main() {
+	printf("Entering main\n");
 	pthread_t t1, t2;
-	pthread_create(&t1, NULL, print, "KK");
-	pthread_create(&t2, NULL, print, "Kkk");
-
-	//pthread_join(t1, NULL);
-	pthread_detach(t1);
-//	pthread_exit(NULL);
+	pthread_create(&t1, NULL, print, "Thread 1");
+	pthread_create(&t2, NULL, print, "Thread 2");
+	pthread_exit(NULL);
 	printf("Exiting\n");
 	return 0;
 }
 
 void* print(void *arg) {
-	pthread_detach(pthread_self());
 	printf("Entering thread\n");
 	char *s = (char *) arg;
 	printf("%s\n",s);
