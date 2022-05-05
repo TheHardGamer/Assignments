@@ -1,0 +1,12 @@
+#define cout std::cout
+#define endl std::endl
+#define A class
+#define D namespace
+#define DD test
+#define DDD {
+#define DDDD int
+#define DDDDD DDDDD
+#define DDDDDD DDDDDD
+#define C counter
+#define CC count
+#define private public

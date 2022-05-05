@@ -1,0 +1,1 @@
+/usr/bin/c++ CMakeFiles/q.dir/ok/p.cpp.o -o q 

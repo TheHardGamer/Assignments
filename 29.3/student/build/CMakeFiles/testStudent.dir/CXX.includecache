@@ -1,0 +1,22 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+../include/Student.h
+string
+-
+
+/media/varun/Varun/C++/29.3/student/src/Student.cpp
+iostream
+-
+Student.h
+/media/varun/Varun/C++/29.3/student/src/Student.h
+
+/media/varun/Varun/C++/29.3/student/src/mainapp.cpp
+Student.h
+/media/varun/Varun/C++/29.3/student/src/Student.h
+

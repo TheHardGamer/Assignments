@@ -1,0 +1,3 @@
+/media/varun/Varun/C++/29.3/student/b/CMakeFiles/rebuild_cache.dir
+/media/varun/Varun/C++/29.3/student/b/CMakeFiles/edit_cache.dir
+/media/varun/Varun/C++/29.3/student/b/CMakeFiles/testStudent.dir
